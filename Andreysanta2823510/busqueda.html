@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>SPR Formularios y Reservas</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="startbootstrap-freelancer-gh-pages/css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">SPR</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Iniciar Sesión</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Registrarse</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Nuestros Servicios</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   <!-- Masthead-->
+   <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+       
+            <!-- Contenedor de Resultados -->
+            <div id="search-results" class="mt-4">
+                <!-- Aquí se mostrarán los resultados de la búsqueda -->
+            </div>
+        </section>
+
+        <h1>Búsqueda de Proveedores</h1>
+
+        <div class="search-container">
+            <form id="searchForm">
+                <label for="category">Categoría de Servicios:</label>
+                <select id="category" name="category">
+                    <option value="">--Seleccione--</option>
+                    <option value="IT">Tecnología</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Logística">Logística</option>
+                </select>
+    
+                <label for="rating">Calificación mínima:</label>
+                <select id="rating" name="rating">
+                    <option value="">--Seleccione--</option>
+                    <option value="1">1 estrella</option>
+                    <option value="2">2 estrellas</option>
+                    <option value="3">3 estrellas</option>
+                    <option value="4">4 estrellas</option>
+                    <option value="5">5 estrellas</option>
+                </select>
+                <input type="button" value="Buscar" onclick="searchProviders()">
+            </form>
+        </div>
+    
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Nombre del Proveedor</th>
+                    <th>Categoría</th>
+                    <th>Calificación</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    
+        <script>
+    
+            const providers = [
+                { name: 'Proveedor A', category: 'IT', rating: 5 },
+                { name: 'Proveedor B', category: 'Marketing', rating: 4 },
+                { name: 'Proveedor C', category: 'Logística', rating: 3 },
+                { name: 'Proveedor D', category: 'IT', rating: 2 },
+                { name: 'Proveedor E', category: 'Marketing', rating: 5 }
+            ];
+    
+            function searchProviders() {
+                const category = document.getElementById('category').value;
+                const rating = document.getElementById('rating').value;
+                const resultsTable = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+    
+               
+                resultsTable.innerHTML = '';
+    
+                
+                const filteredProviders = providers.filter(provider => {
+                    return (!category || provider.category === category) &&
+                           (!rating || provider.rating >= parseInt(rating));
+                });
+    
+                filteredProviders.forEach(provider => {
+                    const row = resultsTable.insertRow();
+                    const nameCell = row.insertCell(0);
+                    const categoryCell = row.insertCell(1);
+                    const ratingCell = row.insertCell(2);
+    
+                    nameCell.textContent = provider.name;
+                    categoryCell.textContent = provider.category;
+                    ratingCell.textContent = provider.rating + ' estrellas';
+                });
+            }
+        </script>
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row"></div>
+        </div>
+    </footer>
+
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+
+    </script>
+</body>
+</html>
